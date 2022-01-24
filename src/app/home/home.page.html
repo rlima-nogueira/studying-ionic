@@ -11,42 +11,49 @@
 
       <ion-img class="imagem" src="./assets/img/fazenda.png"></ion-img>
 
-    <div class="forms">
+    <form [formGroup]="formAgendamento" (ngSubmit)="cadastrarAgendamento()" class="forms">
       <ion-item>
         <ion-label position="floating">Nome completo</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="cliente"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Nome do PET</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="pet"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Tipo de serviço prestado</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="servico"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-button id="open-modal">Selecionar data e horário do atendimento</ion-button>
-        <ion-modal trigger="open-modal">
-          <ng-template>
-            <ion-content>
-              <ion-datetime locale="pt-BR"></ion-datetime>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+      <ion-item *ngIf="this.formAgendamento.value.data ; else selecionarData">
+        <ion-label> {{this.formAgendamento.value.data | date:'medium' }} </ion-label>
       </ion-item>
+      <ng-template #selecionarData>
+        <ion-item>
+          <ion-button id="open-modal">Selecionar data e horário do atendimento</ion-button>
+          <ion-modal trigger="open-modal">
+            <ng-template>
+              <ion-content>
+                <ion-datetime formControlName="data" locale="pt-BR"></ion-datetime>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ng-template>
       <ion-item>
         <ion-label position="floating">Status de atendimento</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="status"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Observações</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="observacao"></ion-input>
       </ion-item>
 
-
       <ion-button type="submit" class="cadastrar">Cadastrar atendimento</ion-button>
+    </form>
+
+
     </div>
 
 
-  </div>
+
 </ion-content>

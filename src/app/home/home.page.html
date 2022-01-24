@@ -24,8 +24,16 @@
         <ion-label position="floating">Tipo de serviço prestado</ion-label>
         <ion-input formControlName="servico"></ion-input>
       </ion-item>
-      <ion-item *ngIf="this.formAgendamento.value.data ; else selecionarData">
-        <ion-label> {{this.formAgendamento.value.data | date:'medium' }} </ion-label>
+      <ion-item *ngIf="this.formAgendamento.value.data !== '' ; else selecionarData"  id="open-modal">
+        <ion-label position="stacked">Data do agendamento</ion-label>
+        <ion-input formControlName="dataEditada" > {{ this.formAgendamento.value.data | date: 'short'}}</ion-input>
+          <ion-modal trigger="open-modal">
+              <ng-template>
+                <ion-content>
+                  <ion-datetime formControlName="data" locale="pt-BR"></ion-datetime>
+                </ion-content>
+              </ng-template>
+          </ion-modal>
       </ion-item>
       <ng-template #selecionarData>
         <ion-item>

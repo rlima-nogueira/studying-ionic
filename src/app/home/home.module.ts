@@ -15,7 +15,7 @@ import { HomeService } from './home.service';
     ReactiveFormsModule,
     IonicModule,
     HttpClientModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
   providers: [
     HomeService

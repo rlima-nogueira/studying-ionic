@@ -11,6 +11,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  { path: 'toolbar', loadChildren: () => import('./toolbar/toolbar.module').then(m => m.ToolbarModule) },
 ];
 
 @NgModule({
